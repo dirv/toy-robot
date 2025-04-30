@@ -63,6 +63,34 @@ describe "Robot" do
       robot = Robot.new.perform_action(:place, { x: 0, y: 2, facing: :west })
       expect(robot.perform_action(:move).x).to eq 0
     end
+
+    LEFT_TURNS = {
+      north: :west,
+      west: :south,
+      south: :east,
+      east: :north
+    }
+
+    LEFT_TURNS.each do |(start, finish)|
+      it "turns left to face #{finish} when currently #{start}" do
+        robot = Robot.new.perform_action(:place, { x: 0, y: 2, facing: start })
+        expect(robot.perform_action(:left).facing).to eq finish
+      end
+    end
+
+    RIGHT_TURNS = {
+      north: :east,
+      west: :north,
+      south: :west,
+      east: :south
+    }
+
+    RIGHT_TURNS.each do |(start, finish)|
+      it "turns right to face #{finish} when currently #{start}" do
+        robot = Robot.new.perform_action(:place, { x: 0, y: 2, facing: start })
+        expect(robot.perform_action(:right).facing).to eq finish
+      end
+    end
   end
 end
 

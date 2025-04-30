@@ -16,6 +16,10 @@ class Robot
       self.class.at(params[:x], params[:y], params[:facing])
     elsif command == :move
       move_if_safe(move)
+    elsif command == :left
+      turn_left
+    elsif command == :right
+      turn_right
     else
       self
     end
@@ -53,4 +57,29 @@ class Robot
     end
   end
 
+  def turn_left
+    case facing
+    when :north
+      self.class.at(self.x, self.y, :west)
+    when :south
+      self.class.at(self.x, self.y, :east)
+    when :east
+      self.class.at(self.x, self.y, :north)
+    when :west
+      self.class.at(self.x, self.y, :south)
+    end
+  end
+
+  def turn_right
+    case facing
+    when :north
+      self.class.at(self.x, self.y, :east)
+    when :south
+      self.class.at(self.x, self.y, :west)
+    when :east
+      self.class.at(self.x, self.y, :south)
+    when :west
+      self.class.at(self.x, self.y, :north)
+    end
+  end
 end
