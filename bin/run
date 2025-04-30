@@ -1,4 +1,4 @@
 #! /usr/bin/env ruby
 
-require "./src/simulator.rb"
+require "./src/simulator"
 Simulator.new.perform_with_io

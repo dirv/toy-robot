@@ -1,4 +1,4 @@
-require "./src/simulator.rb"
+require "./src/simulator"
 
 describe Simulator do
   describe "#perform_action" do

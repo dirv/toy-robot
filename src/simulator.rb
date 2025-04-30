@@ -1,5 +1,5 @@
-require "./src/parser.rb"
-require "./src/robot.rb"
+require "./src/parser"
+require "./src/robot"
 
 class Simulator
 

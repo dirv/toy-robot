@@ -1,4 +1,4 @@
-require "./src/tabletop.rb"
+require "./src/tabletop"
 
 class Robot
   attr_accessor :x

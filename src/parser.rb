@@ -1,4 +1,4 @@
-require "./src/tabletop.rb"
+require "./src/tabletop"
 
 class Parser
   def self.parse(command)
