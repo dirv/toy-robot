@@ -1,0 +1,4 @@
+#! /usr/bin/env ruby
+
+require "./src/simulator.rb"
+Simulator.new.perform_with_io
