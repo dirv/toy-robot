@@ -16,15 +16,19 @@ class Robot
   def perform_action(command, params = {})
     if command == :place
       self.class.at(params[:x], params[:y], params[:facing])
-    elsif command == :move
+    elsif command == :move && placed?
       move_if_safe(move)
-    elsif command == :left
+    elsif command == :left && placed?
       turn_left
-    elsif command == :right
+    elsif command == :right && placed?
       turn_right
     else
       self
     end
+  end
+
+  def placed?
+    x != nil
   end
 
   private

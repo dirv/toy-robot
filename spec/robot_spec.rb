@@ -1,18 +1,20 @@
 require "./src/robot"
 
-
 describe "Robot" do
-    it "initially has no position" do
-      expect(Robot.new.x).to be_nil
-      expect(Robot.new.y).to be_nil
-    end
+  def robot_at(position)
+    Robot.new.perform_action(:place, position)
+  end
 
-    it "initially has no direction" do
-      expect(Robot.new.facing).to be_nil
-    end
+  it "initially has no position" do
+    expect(Robot.new.x).to be_nil
+    expect(Robot.new.y).to be_nil
+  end
+
+  it "initially has no direction" do
+    expect(Robot.new.facing).to be_nil
+  end
 
   describe "#perform_action" do
-
     it "returns the same robot if the command is not recognised" do
       robot = Robot.new
       expect(robot.perform_action(:unknown)).to eq robot
@@ -23,10 +25,6 @@ describe "Robot" do
       expect(robot.x).to eq 1
       expect(robot.y).to eq 2
       expect(robot.facing).to eq :north
-    end
-
-    def robot_at(position)
-      Robot.new.perform_action(:place, position)
     end
 
     it "moves north" do
@@ -95,6 +93,32 @@ describe "Robot" do
         robot = robot_at({ x: 0, y: 2, facing: start })
         expect(robot.perform_action(:right).facing).to eq finish
       end
+    end
+
+    it "does not move if the robot has not yet been placed" do
+      robot = Robot.new
+      expect(robot.perform_action(:move)).to eq robot
+    end
+
+    it "does not turn left if the robot has not yet been placed" do
+      robot = Robot.new
+      expect(robot.perform_action(:left)).to eq robot
+    end
+
+    it "does not turn right if the robot has not yet been placed" do
+      robot = Robot.new
+      expect(robot.perform_action(:right)).to eq robot
+    end
+  end
+
+  describe "#placed?" do
+    it "is initially false" do
+      expect(Robot.new).not_to be_placed
+    end
+
+    it "is true after placing robot" do
+      robot = robot_at({ x: 0, y: 2, facing: :north })
+      expect(robot).to be_placed
     end
   end
 end
