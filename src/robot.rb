@@ -1,7 +1,6 @@
-class Robot
-  MAX_X = 4
-  MAX_Y = 4
+require "./src/tabletop.rb"
 
+class Robot
   attr_accessor :x
   attr_accessor :y
   attr_accessor :facing
@@ -44,11 +43,11 @@ class Robot
   end
 
   def move_if_safe(new_state)
-    if new_state.y > MAX_Y
+    if new_state.y > Tabletop::MAX_Y
       self
     elsif new_state.y < 0
       self
-    elsif new_state.x > MAX_X
+    elsif new_state.x > Tabletop::MAX_X
       self
     elsif new_state.x < 0
       self

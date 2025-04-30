@@ -1,4 +1,4 @@
-require './src/robot.rb'
+require "./src/tabletop.rb"
 
 class Parser
   def self.parse(command)
@@ -26,8 +26,8 @@ class Parser
 
     _, params = command
     return unless VALID_FACING_DIRECTIONS.include?(params[:facing])
-    return unless params[:y].between?(0, Robot::MAX_Y)
-    return unless params[:x].between?(0, Robot::MAX_X)
+    return unless params[:y].between?(0, Tabletop::MAX_Y)
+    return unless params[:x].between?(0, Tabletop::MAX_X)
 
     command
   end
