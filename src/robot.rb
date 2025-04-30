@@ -1,4 +1,7 @@
 class Robot
+  MAX_X = 4
+  MAX_Y = 4
+
   attr_accessor :x
   attr_accessor :y
   attr_accessor :facing
@@ -26,9 +29,6 @@ class Robot
   end
 
   private
-
-  MAX_X = 4
-  MAX_Y = 4
 
   def move
     case facing
